@@ -10,7 +10,7 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
             Biographie
         </h1>
 
-        <article class="wrapper lg:py-16">
+        <article class="lg:py-16">
             <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
                 <!-- Colonne gauche : CV -->
                 <div>
@@ -41,7 +41,13 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                                 nostrud exercitation ullamco laboris nisi ut
                                 aliquip ex ea commodo consequat. Duis aute irure
                                 dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur.
+                                cillum dolore eu fugiat nulla pariatur. Lorem
+                                ipsum dolor sit amet consectetur adipisicing
+                                elit. Perferendis laboriosam dolor quam
+                                consectetur veritatis molestiae reprehenderit
+                                esse, iusto et eaque nemo necessitatibus.
+                                Corporis repellat ratione at sequi voluptates
+                                cupiditate nihil.
                             </p>
                         </div>
                     </section>

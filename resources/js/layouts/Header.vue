@@ -47,10 +47,10 @@ const toggleMenu = () => {
                     </li>
                     <li>
                         <Link
-                            href="/periods"
+                            href="/periodes"
                             :class="{
                                 'underline underline-offset-2':
-                                    currentPath.startsWith('/periods'),
+                                    currentPath.startsWith('/periodes'),
                             }"
                             >Périodes</Link
                         >

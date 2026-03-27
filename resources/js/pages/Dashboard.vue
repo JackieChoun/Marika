@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
+import { usePage } from '@inertiajs/vue3';
+import { ChessQueen } from 'lucide-vue-next';
+
+const page = usePage();
+const user = page.props.auth?.user;
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -14,34 +18,17 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div
-            class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
-        >
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-            </div>
-            <div
-                class="relative min-h-screen flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
-            >
-                <PlaceholderPattern />
-            </div>
+        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+            <p class="text-center text-4xl">
+                Bienvenue Administrateur {{ user?.name }}
+            </p>
+            <a
+                href="https://www.chess.com/"
+                target="_blank"
+                class="flex items-center justify-center"
+                ><ChessQueen class="h-40 w-40"
+            /></a>
         </div>
     </AppLayout>
 </template>

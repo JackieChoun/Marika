@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Inertia\Inertia;
+use App\Models\Period;
+use App\Models\Painting;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +20,28 @@ class IndexController extends Controller
     {
         return Inertia::render('Biographie', [
             'title' => 'Biographie',
+        ]);
+    }
+
+    public function periodes()
+    {
+        return Inertia::render('Periodes', [
+            'periods' => Period::orderBy('start_date', 'desc')->get(),
+            'title' => 'Périodes',
+        ]);
+    }
+
+    public function oeuvres(Request $request)
+    {
+        $paintings = Painting::with('period')
+            ->orderBy('date', 'desc')
+            ->paginate(9)
+            ->withQueryString();
+
+        return Inertia::render('Oeuvres', [
+            'paintings' => $paintings,
+            'periods' => Period::orderBy('start_date', 'desc')->get(),
+            'title' => 'Oeuvres',
         ]);
     }
 
