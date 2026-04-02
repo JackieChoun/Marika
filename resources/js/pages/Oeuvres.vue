@@ -202,36 +202,34 @@ const prevPainting = () => {
         <!-- MODAL LIGHTBOX -->
         <div
             v-if="showModal"
-            class="wrapper fixed inset-0 z-50 flex items-center justify-center bg-black/75"
+            class="wrapper fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-sm"
             @click.self="showModal = false"
         >
             <button
                 @click="prevPainting"
-                class="cursor-pointer text-white hover:scale-105"
+                class="cursor-pointer text-black hover:scale-105"
                 :disabled="currentPaintingIndex === 0"
             >
                 <CircleChevronLeft class="size-15 stroke-1" />
             </button>
-            <div class="relative flex max-h-[98vh] w-auto justify-center gap-2">
+            <div
+                class="relative flex h-full w-full items-center justify-center"
+            >
                 <!-- IMAGE -->
                 <img
                     :src="`/storage/${paintings.data[currentPaintingIndex].image_path}`"
                     :alt="paintings.data[currentPaintingIndex].title"
-                    class="object-contain"
+                    class="max-h-[98vh] w-full object-contain"
                     @click.self.stop="showModal = false"
                 />
                 <!-- INFOS -->
-                <div class="absolute inset-0 size-fit gap-2 p-2 text-white">
+                <div class="absolute inset-0 w-35 gap-2 p-2 text-gray-700">
                     <h2 class="text-xl font-semibold">
                         {{ paintings.data[currentPaintingIndex].title }}
                     </h2>
                     <p v-if="paintings.data[currentPaintingIndex].date">
                         {{
-                            new Intl.DateTimeFormat('fr-FR', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                            }).format(
+                            new Intl.DateTimeFormat('fr-FR').format(
                                 new Date(
                                     paintings.data[currentPaintingIndex].date,
                                 ),
@@ -262,7 +260,7 @@ const prevPainting = () => {
             </div>
             <button
                 @click="nextPainting"
-                class="cursor-pointer text-white hover:scale-105"
+                class="cursor-pointer text-black hover:scale-105"
                 :disabled="currentPaintingIndex === paintings.data.length - 1"
             >
                 <CircleChevronRight class="size-15 stroke-1" />
