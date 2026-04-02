@@ -3,39 +3,13 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Link } from '@inertiajs/vue3';
 
 const modules = [Autoplay, Pagination];
 
-const paintings = [
-    {
-        title: 'Forêt',
-        technique: 'Huile sur toile',
-        size: '60 x 80 cm',
-        year: '2023',
-        image: 'images/paintings/Foret.png',
-    },
-    {
-        title: 'Douceur',
-        technique: 'Huile sur toile',
-        size: '50 x 70 cm',
-        year: '2022',
-        image: 'images/paintings/Douceur.png',
-    },
-    {
-        title: 'Vagues',
-        technique: 'Huile sur toile',
-        size: '70 x 90 cm',
-        year: '2021',
-        image: 'images/paintings/Vagues.png',
-    },
-    {
-        title: 'Volcano',
-        technique: 'Huile sur toile',
-        size: '60 x 80 cm',
-        year: '2023',
-        image: 'images/paintings/Volcano.png',
-    },
-];
+defineProps({
+    paintings: Array,
+});
 </script>
 
 <template>
@@ -48,36 +22,25 @@ const paintings = [
             :modules="modules"
             class="h-full w-full"
         >
-            <SwiperSlide
-                v-for="painting in paintings"
-                :key="
-                    painting.image +
-                    painting.title +
-                    painting.year +
-                    painting.technique +
-                    painting.size
-                "
-            >
-                <img
-                    :src="painting.image"
-                    :alt="painting.title"
-                    loading="lazy"
-                />
+            <SwiperSlide v-for="painting in paintings" :key="painting.id">
+                <Link :href="`/oeuvres`">
+                    <img
+                        :src="`/storage/${painting.image_path}`"
+                        :alt="painting.title"
+                        loading="lazy"
+                    />
+                </Link>
                 <div class="flex gap-2 pt-4 text-sm">
-                    <p class="font-semibold">
-                        {{ painting.title }}
+                    <p class="font-semibold">{{ painting.title }}</p>
+                    <p class="text-gray-500">{{ painting.technique }}</p>
+                    <p
+                        v-if="painting.height && painting.width"
+                        class="text-gray-500"
+                    >
+                        {{ painting.height }} × {{ painting.width }} cm
                     </p>
-
-                    <p class="text-gray-500">
-                        {{ painting.technique }}
-                    </p>
-
-                    <p class="text-gray-500">
-                        {{ painting.size }}
-                    </p>
-
-                    <p class="text-gray-500">
-                        {{ painting.year }}
+                    <p v-if="painting.date" class="text-gray-500">
+                        {{ new Date(painting.date).getFullYear() }}
                     </p>
                 </div>
             </SwiperSlide>

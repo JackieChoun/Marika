@@ -68,7 +68,7 @@ const toggleMenu = () => {
                 </ul>
             </nav>
             <button
-                class="hidden cursor-pointer rounded-full bg-red-900 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 lg:block"
+                class="bg-changecolor hidden cursor-pointer rounded-full px-5 py-3 text-sm font-bold text-white hover:bg-red-700 lg:block"
             >
                 Contact
             </button>

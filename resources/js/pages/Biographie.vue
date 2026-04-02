@@ -10,8 +10,8 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
             Biographie
         </h1>
 
-        <article class="lg:py-16">
-            <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <article class="lg:py-13">
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
                 <!-- Colonne gauche : CV -->
                 <div>
                     <!-- Intro avec texte en float sur image -->
@@ -156,7 +156,7 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                 </div>
 
                 <!-- Colonne droite : Expositions -->
-                <div>
+                <div class="grid grid-cols-2 gap-12">
                     <!-- Expositions personnelles -->
                     <section
                         class="mb-10"

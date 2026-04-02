@@ -2,22 +2,32 @@
 import SiteLayout from '@/layouts/SiteLayout.vue';
 import CarouselSection from '@/components/CarouselSection.vue';
 import CarouselSectionMobile from '@/components/CarouselSectionMobile.vue';
+
+defineProps({
+    latestPaintings: Array,
+});
 </script>
 
 <template>
     <SiteLayout>
-        <div
-            class="flex flex-col overflow-hidden"
-            style="height: calc(100dvh - 5rem)"
+        <h1
+            class="pt-4 pb-20 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
         >
-            <h1
-                class="pt-4 pb-20 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
-            >
-                Marika Perros
-            </h1>
-            <CarouselSection class="hidden md:block" />
-            <CarouselSectionMobile class="md:hidden" />
-        </div>
+            Marika Perros
+        </h1>
+        <section
+            class="flex flex-col overflow-hidden"
+            style="height: calc(96dvh - 10rem)"
+        >
+            <CarouselSection
+                class="hidden md:block"
+                :paintings="latestPaintings"
+            />
+            <CarouselSectionMobile
+                class="md:hidden"
+                :paintings="latestPaintings"
+            />
+        </section>
         <section class="gap-5 py-6 lg:py-10">
             <h2
                 class="pb-2 text-center text-2xl font-light lg:pb-5 lg:text-left lg:text-4xl"
