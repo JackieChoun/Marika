@@ -23,7 +23,11 @@ defineProps({
             :modules="modules"
             class="h-full w-full"
         >
-            <SwiperSlide v-for="painting in paintings" :key="painting.id">
+            <SwiperSlide
+                v-for="painting in paintings"
+                :key="painting.id"
+                class="relative"
+            >
                 <div
                     class="absolute h-auto w-34 text-sm md:right-10 md:bottom-30"
                 >
@@ -39,25 +43,26 @@ defineProps({
                         {{ new Date(painting.date).getFullYear() }}
                     </p>
                 </div>
-                <Link :href="`/oeuvres`">
-                    <img
-                        :src="`/storage/${painting.image_path}`"
-                        :alt="painting.title"
-                        loading="lazy"
-                    />
-                </Link>
+                <div class="flex h-full w-full items-center justify-center">
+                    <Link
+                        :href="`/oeuvres`"
+                        class="inline-block h-full max-w-full"
+                    >
+                        <img
+                            :src="`/storage/${painting.image_path}`"
+                            :alt="painting.title"
+                            loading="lazy"
+                            class="h-full max-w-full object-contain"
+                            decoding="async"
+                        />
+                    </Link>
+                </div>
             </SwiperSlide>
         </Swiper>
     </section>
 </template>
 
 <style>
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
 .swiper-pagination-bullet {
     background: black;
     opacity: 0.4;

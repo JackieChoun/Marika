@@ -6,6 +6,7 @@ import {
     LinkIcon,
     Palette,
     CalendarHeart,
+    Newspaper,
 } from 'lucide-vue-next';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -40,6 +41,12 @@ const mainNavItems: NavItem[] = [
         title: 'Oeuvres',
         href: '/admin/paintings',
         icon: Palette,
+    },
+
+    {
+        title: 'Actualités',
+        href: '/admin/actu',
+        icon: Newspaper,
     },
 ];
 

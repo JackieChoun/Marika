@@ -27,13 +27,13 @@
 
         <!-- Coordonnées -->
         <div class="flex flex-col gap-1 text-center">
-            <a href="tel:+33760287270" class="text-gray-600 hover:underline"
-                >07.60.28.72.70</a
+            <a href="tel:+33621802660" class="text-gray-600 hover:underline"
+                >06.21.80.26.60</a
             >
-            <p>27 rue d'Alsace-Lorraine</p>
-            <p>31000 Toulouse</p>
-            <a href="mailto:contact@marika-perros.fr" class="hover:underline">
-                contact@marika-perros.fr
+            <p>2 chemin Christophe Gluck</p>
+            <p>31100 Toulouse</p>
+            <a href="mailto:marikaperros1@gmail.com" class="hover:underline">
+                marikaperros1@gmail.com
             </a>
         </div>
 

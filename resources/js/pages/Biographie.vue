@@ -15,12 +15,12 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                 <!-- Colonne gauche : CV -->
                 <div>
                     <!-- Intro avec texte en float sur image -->
-                    <section class="mb-12">
+                    <section class="mb-12" aria-label="Introduction">
                         <div class="relative">
                             <img
-                                src="/images/marika.png"
+                                src="/images/marika.jpg"
                                 alt="Portrait de Marika Perros, peintre"
-                                class="float-left mr-3 h-52 w-auto"
+                                class="float-left mt-3 mr-3 h-55 w-50 object-cover object-center"
                             />
                             <h2 class="text-2xl font-light">Marika Perros</h2>
                             <p class="mb-2 text-sm font-semibold text-gray-500">

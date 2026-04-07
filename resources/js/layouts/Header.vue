@@ -67,12 +67,15 @@ const toggleMenu = () => {
                     </li>
                 </ul>
             </nav>
-            <button
-                class="bg-changecolor hidden cursor-pointer rounded-full px-5 py-3 text-sm font-bold text-white hover:bg-red-700 lg:block"
-            >
-                Contact
-            </button>
+            <Link href="/contact">
+                <button
+                    class="hidden cursor-pointer rounded-full bg-changecolor px-5 py-3 text-sm font-bold text-white hover:bg-changecolor/40 lg:block"
+                >
+                    Contact
+                </button>
+            </Link>
             <!-- Mobile burger button -->
+
             <button
                 @click="toggleMenu"
                 class="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-2 lg:hidden"

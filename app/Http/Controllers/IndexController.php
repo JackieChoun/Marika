@@ -33,58 +33,65 @@ class IndexController extends Controller
     }
 
   public function oeuvres(Request $request)
-{
-    $query = Painting::with('period');
+    {
+        $query = Painting::with('period');
 
-    // PÉRIODE
-    $query->when($request->period, function ($q) use ($request) {
-        $q->where('period_id', $request->period);
-    });
+        // PÉRIODE
+        $query->when($request->period, function ($q) use ($request) {
+            $q->where('period_id', $request->period);
+        });
 
-    // TECHNIQUE
-    $query->when($request->technique, function ($q) use ($request) {
-        $q->where('technique', "LIKE", $request->technique);
-    });
+        // TECHNIQUE
+        $query->when($request->technique, function ($q) use ($request) {
+            $q->where('technique', "LIKE", $request->technique);
+        });
 
-    // DISPONIBILITÉ
-    $query->when($request->available !== null, function ($q) use ($request) {
-        $q->where('is_available', $request->available);
-    });
+        // DISPONIBILITÉ
+        $query->when($request->available !== null, function ($q) use ($request) {
+            $q->where('is_available', $request->available);
+        });
 
-    // DIMENSIONS (ex: width_min, width_max, etc.)
-    $query->when($request->width_min, fn($q) => $q->where('width', '>=', $request->width_min));
-    $query->when($request->width_max, fn($q) => $q->where('width', '<=', $request->width_max));
+        // DIMENSIONS (ex: width_min, width_max, etc.)
+        $query->when($request->width_min, fn($q) => $q->where('width', '>=', $request->width_min));
+        $query->when($request->width_max, fn($q) => $q->where('width', '<=', $request->width_max));
 
-    $query->when($request->height_min, fn($q) => $q->where('height', '>=', $request->height_min));
-    $query->when($request->height_max, fn($q) => $q->where('height', '<=', $request->height_max));
+        $query->when($request->height_min, fn($q) => $q->where('height', '>=', $request->height_min));
+        $query->when($request->height_max, fn($q) => $q->where('height', '<=', $request->height_max));
 
-    $paintings = $query
-        ->orderBy('date', 'desc')
-        ->paginate(9)
-        ->withQueryString();
+        $paintings = $query
+            ->orderBy('date', 'desc')
+            ->paginate(9)
+            ->withQueryString();
 
-    $techniques = Painting::select('technique')
-        ->whereNotNull('technique')
-        ->distinct()
-        ->orderBy('technique')
-        ->pluck('technique');
+        $techniques = Painting::select('technique')
+            ->whereNotNull('technique')
+            ->distinct()
+            ->orderBy('technique')
+            ->pluck('technique');
 
-    return Inertia::render('Oeuvres', [
-        'paintings' => $paintings,
-        'periods' => Period::orderBy('start_date', 'desc')->get(),
-        'techniques' => $techniques,
-        'filters' => $request->only([
-            'period',
-            'technique',
-            'available',
-            'width_min',
-            'width_max',
-            'height_min',
-            'height_max',
-        ]),
-        'title' => 'Oeuvres',
-    ]);
-}
+        return Inertia::render('Oeuvres', [
+            'paintings' => $paintings,
+            'periods' => Period::orderBy('start_date', 'desc')->get(),
+            'techniques' => $techniques,
+            'filters' => $request->only([
+                'period',
+                'technique',
+                'available',
+                'width_min',
+                'width_max',
+                'height_min',
+                'height_max',
+            ]),
+            'title' => 'Oeuvres',
+        ]);
+    }
+
+    public function actu()
+    {
+        return Inertia::render('Actu', [
+            'title' => 'Actu',
+        ]);
+    }
 
     public function contact()
     {
