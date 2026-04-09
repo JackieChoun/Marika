@@ -110,7 +110,7 @@ const flash = usePage().props.flash as { success?: string };
                             </div>
                             <button
                                 @click="deleteOeuvre(painting.id)"
-                                class="text-sm font-semibold text-red-600 hover:underline"
+                                class="cursor-pointer text-sm font-semibold text-red-600 hover:underline"
                             >
                                 Supprimer
                             </button>

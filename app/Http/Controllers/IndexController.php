@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Period;
 use App\Models\Painting;
+use App\Models\Event;
 
 use Illuminate\Http\Request;
 
@@ -89,6 +90,7 @@ class IndexController extends Controller
     public function actu()
     {
         return Inertia::render('Actu', [
+            'events' => Event::orderBy('date_start', 'desc')->get(),
             'title' => 'Actu',
         ]);
     }

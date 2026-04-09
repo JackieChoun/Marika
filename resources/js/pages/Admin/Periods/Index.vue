@@ -74,7 +74,7 @@ const flash = usePage().props.flash;
                         </Link>
                         <button
                             @click="deletePeriod(period.id)"
-                            class="text-sm font-semibold text-red-600 hover:underline"
+                            class="cursor-pointer text-sm font-semibold text-red-600 hover:underline"
                         >
                             Supprimer
                         </button>

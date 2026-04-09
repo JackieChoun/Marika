@@ -7,7 +7,7 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\PaintingController;
-use App\Http\Controllers\Admin\ActuController;
+use App\Http\Controllers\Admin\EventController;
 
 // Public
 Route::get('/', [IndexController::class, 'index'])->name('accueil');
@@ -27,7 +27,7 @@ Route::prefix('admin', 'verified')
     ->group(function () {
         Route::resource('periods', PeriodController::class);
         Route::resource('paintings', PaintingController::class);
-        Route::resource('actu', ActuController::class);
+        Route::resource('events', EventController::class);
     });
 
 require __DIR__.'/settings.php';

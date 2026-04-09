@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Period;
 use App\Models\Painting;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,9 @@ class PeriodController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Periods/Create');
+        return Inertia::render('Admin/Periods/Create', [
+            'title' => 'Ajouter une période',
+        ]);
     }
 
     public function store(Request $request)
@@ -69,6 +72,9 @@ class PeriodController extends Controller
 
     public function destroy(Period $period)
     {
+        if ($period->image_path && Storage::disk('public')->exists($period->image_path)) {
+            Storage::disk('public')->delete($period->image_path);
+        }
         $period->delete();
         return redirect()->route('admin.periods.index')->with('success', 'Période supprimée.');
     }

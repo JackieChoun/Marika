@@ -45,7 +45,7 @@ const mainNavItems: NavItem[] = [
 
     {
         title: 'Actualités',
-        href: '/admin/actu',
+        href: '/admin/events',
         icon: Newspaper,
     },
 ];

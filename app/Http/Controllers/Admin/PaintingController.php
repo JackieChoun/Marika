@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Painting;
 use App\Models\Period;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,7 @@ class PaintingController extends Controller
     {
         return Inertia::render('Admin/Paintings/Create', [
             'periods' => Period::orderBy('start_date', 'desc')->get(),
+            'title' => 'Ajouter une oeuvre',
         ]);
     }
 
@@ -54,6 +56,9 @@ class PaintingController extends Controller
 
     public function destroy(Painting $painting)
     {
+        if ($painting->image_path && Storage::disk('public')->exists($painting->image_path)) {
+            Storage::disk('public')->delete($painting->image_path);
+        }
         $painting->delete();
         return redirect()->route('admin.paintings.index')->with('success', 'Oeuvre supprimée.');
     }
