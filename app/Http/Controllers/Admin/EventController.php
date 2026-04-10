@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 
+
 class EventController extends Controller
 {
     /**
@@ -45,35 +46,35 @@ class EventController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'type' => 'required|in:stage,exposition',
-        'date_start' => 'required|date',
-        'date_end' => 'nullable|date|after_or_equal:date_start',
-        'location' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'external_link' => 'nullable|url',
-        'image' => 'nullable|image|max:2048',
-    ]);
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'type' => 'required|in:stage,exposition',
+            'date_start' => 'required|date',
+            'date_end' => 'nullable|date|after_or_equal:date_start',
+            'location' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'external_link' => 'nullable|url',
+            'image' => 'nullable|image|max:2048',
+        ]);
 
-    // upload image
-    if ($request->hasFile('image')) {
-        $validated['image_path'] = $request->file('image')->store('events', 'public');
+        // upload image
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('events', 'public');
+        }
+
+        // création
+        \App\Models\Event::create($validated);
+
+        return redirect()
+            ->route('admin.events.index')
+            ->with('success', 'Événement créé');
     }
-
-    // création
-    \App\Models\Event::create($validated);
-
-    return redirect()
-        ->route('admin.events.index')
-        ->with('success', 'Événement créé');
-}
 
     /**
      * Display the specified resource.
      */
-    public function show(Actu $actu)
+    public function show(Event $event)
     {
         //
     }
@@ -81,33 +82,60 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Actu $actu)
+    public function edit(Event $event)
     {
-        //
+        return Inertia::render('Admin/Events/Edit', [
+            'event' => $event,
+            'title' => 'Modifier événement',
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Actu $actu)
+    public function update(Request $request, Event $event)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'type' => 'required|in:stage,exposition',
+            'date_start' => 'required|date',
+            'date_end' => 'nullable|date|after_or_equal:date_start',
+            'location' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'external_link' => 'nullable|url',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        // gestion image
+        if ($request->hasFile('image')) {
+            // supprimer ancienne image
+            if ($event->image_path) {
+                Storage::disk('public')->delete($event->image_path);
+            }
+
+            $data['image_path'] = $request->file('image')->store('events', 'public');
+        }
+
+        $event->update($data);
+
+        return redirect()->route('admin.events.index')
+            ->with('success', 'Événement mis à jour');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Event $event)
-{
+    {
 
-    if ($event->image_path && Storage::disk('public')->exists($event->image_path)) {
-        Storage::disk('public')->delete($event->image_path);
+        if ($event->image_path && Storage::disk('public')->exists($event->image_path)) {
+            Storage::disk('public')->delete($event->image_path);
+        }
+
+        $event->delete();
+
+        return redirect()
+            ->route('admin.events.index')
+            ->with('success', 'Événement supprimé');
     }
-
-    $event->delete();
-
-    return redirect()
-        ->route('admin.events.index')
-        ->with('success', 'Événement supprimé');
-}
 }
