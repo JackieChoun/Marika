@@ -32,18 +32,18 @@ defineProps({
             <h2
                 class="pb-2 text-center text-2xl font-light lg:pb-5 lg:text-left lg:text-4xl"
             >
-                Artiste peintre et art contemporain
+                Faire peindre la matière
             </h2>
             <p
                 class="px-5 text-center leading-relaxed md:text-justify lg:text-lg"
             >
-                Je suis une artiste peintre passionnée, spécialisée dans la
-                création de paysages et de scènes inspirées de la nature. Mon
-                travail explore les émotions et les atmosphères à travers des
-                couleurs vibrantes et des compositions dynamiques. Chaque
-                tableau est une invitation à plonger dans un univers visuel
-                unique, où la beauté de la nature rencontre l'expression
-                artistique.
+                Peindre, c’est jouer ! Jouer avec la matière, être l’alchimiste
+                d’un monde qui se crée.<br />
+                Depuis une quarantaine d’années, j’explore la figuration
+                suggérée, avec des périodes diverses ayant toujours un lien
+                entre elles. C’est un maillage étroit entre pensées et formes,
+                hasard, matière, mouvement, figure, abstraction, vitesse,
+                lenteur, rythme, respiration.
             </p>
         </section>
     </SiteLayout>

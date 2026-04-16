@@ -27,16 +27,6 @@ const toggleMenu = () => {
                 <ul class="flex gap-7">
                     <li>
                         <Link
-                            href="/biographie"
-                            :class="{
-                                'underline underline-offset-2':
-                                    currentPath.startsWith('/biographie'),
-                            }"
-                            >Biographie</Link
-                        >
-                    </li>
-                    <li>
-                        <Link
                             href="/oeuvres"
                             :class="{
                                 'underline underline-offset-2':
@@ -53,6 +43,16 @@ const toggleMenu = () => {
                                     currentPath.startsWith('/periodes'),
                             }"
                             >Périodes</Link
+                        >
+                    </li>
+                    <li>
+                        <Link
+                            href="/biographie"
+                            :class="{
+                                'underline underline-offset-2':
+                                    currentPath.startsWith('/biographie'),
+                            }"
+                            >Biographie</Link
                         >
                     </li>
                     <li>

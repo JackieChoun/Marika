@@ -9,16 +9,14 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
         </h1>
         <section class="grid-cols-2 gap-4 md:grid">
             <p class="flex items-center text-center md:text-justify lg:text-lg">
-                Atelier de 70 m2, baie vitrée de 4/5 m, étagères (bibliothèque à
-                tableaux) hauteur de plafond 3,80m Grand mur blanc de 3, 8 de
-                haut sur 8m de long et au fond de l’atelier 4/4m J’expose aussi
-                régulièrement d’autres artistes dans mon atelier conjointement à
-                un spectacle vivant. Ce sont des soirées privées, maximum 50
-                personnes. J’appelle mon atelier pour l’occasion L’Atelier A.
-                Rencontres entre les arts et les gens. Mon but : créer du lien.
-                Les spectateurs sont de tous âges et de toutes conditions
-                sociales. PS : je n’invite que les personnes par email, si vous
-                désirez être invité, écrivez moi.
+                Atelier attribué par la DRAC en 1998, de 70 m2, baie vitrée de
+                4/5 m. J’expose aussi régulièrement d’autres artistes dans mon
+                atelier conjointement à un spectacle vivant. Ce sont des soirées
+                privées, maximum 50 personnes. J’appelle mon atelier pour
+                l’occasion L’Atelier A. Rencontres entre les arts et les gens.
+                Mon but : créer du lien. Les spectateurs sont de tous âges et de
+                toutes conditions sociales. PS : je n’invite que les personnes
+                par email, si vous désirez être invité, écrivez moi.
             </p>
             <img
                 src="/images/atelier.jpg"
@@ -54,12 +52,12 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                 >
                     L'Atelier
                 </p>
-                <p>2 chemin Christophe Gluck, 31100 Toulouse</p>
+                <p>2 cheminement Christophe Gluck, 31100 Toulouse</p>
             </address>
         </section>
         <div class="relative mx-auto h-[60vh] w-full pt-10 pb-10">
             <iframe
-                src="https://www.google.com/maps?q=2+chemin+Christophe+Gluck,+31100+Toulouse&z=17&hl=fr&maptype=roadmap&output=embed"
+                src="https://www.google.com/maps?q=2+cheminement+Christophe+Gluck,+31100+Toulouse&z=17&hl=fr&maptype=roadmap&output=embed"
                 title="Map gps - atelier de création artistique Marika Perros"
                 allowfullscreen
                 loading="lazy"

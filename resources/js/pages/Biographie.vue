@@ -27,27 +27,32 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                                 Artiste-peintre
                             </p>
                             <p class="text-justify text-sm leading-relaxed">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit. Sed
-                                do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis
-                                nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Lorem
-                                ipsum dolor sit amet consectetur adipisicing
-                                elit. Perferendis laboriosam dolor quam
-                                consectetur veritatis molestiae reprehenderit
-                                esse, iusto et eaque nemo necessitatibus.
-                                Corporis repellat ratione at sequi voluptates
-                                cupiditate nihil.
+                                Depuis plus de 10 ans, mon thème de
+                                prédilection, NATURE, un seul mot, celui qui
+                                manque tant à l’homme ! Quoi de plus naturel
+                                alors que de faire « peindre la matière elle
+                                même ». <br />
+                                Je joue telle une chimiste avec des « hasards «
+                                semi-contrôlé qui crée une rivière qui court,
+                                une fleur qui respire, un nuage qui se pose. Mon
+                                sujet, c’est l’équilibre, la paix, la joie,
+                                parfois le silence contemplateur, parfois la
+                                force bouillonnante des éléments, en tout cas
+                                une recherche d’harmonie.<br />
+                                J’estime avoir la fonction en tant qu’artiste,
+                                puisque j’ai la chance d’occuper ma vie à jouer
+                                avec des couleurs, de devoir aider ce monde à
+                                aller mieux en diffusant du bien avec mes
+                                images, oser faire rêver d’un monde meilleur.<br />
+                                Je veux contrer par mon travail, tel un
+                                papillon, la violence qui est faite à tout ce
+                                qui vit sur terre en diffusant du calme, de la
+                                tendresse, de la vigueur, du souffle. Que ceux
+                                qui regardent s’extirpent du temps qui court
+                                pour contempler, ressentir la lenteur, la force
+                                de l’espoir.<br />
+                                Mon but, à travers mes images, est d’offrir de
+                                l’amour.
                             </p>
                         </div>
                     </section>

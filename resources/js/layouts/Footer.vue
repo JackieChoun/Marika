@@ -30,7 +30,7 @@
             <a href="tel:+33621802660" class="text-gray-600 hover:underline"
                 >06.21.80.26.60</a
             >
-            <p>2 chemin Christophe Gluck</p>
+            <p>2 cheminement Christophe Gluck</p>
             <p>31100 Toulouse</p>
             <a href="mailto:marikaperros1@gmail.com" class="hover:underline">
                 marikaperros1@gmail.com

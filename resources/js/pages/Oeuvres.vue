@@ -1,9 +1,9 @@
 <script setup>
 import SiteLayout from '@/layouts/SiteLayout.vue';
 import { Link, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { CircleChevronLeft, CircleChevronRight } from 'lucide-vue-next';
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import { Menu, MenuButton, MenuItems } from '@headlessui/vue';
 
 const props = defineProps({
     paintings: Object,
@@ -12,31 +12,60 @@ const props = defineProps({
     filters: Object,
 });
 
-// FILTRE
-const updateFilters = (newFilters) => {
-    router.get(
-        '/oeuvres',
-        {
-            ...props.filters,
-            ...newFilters,
-        },
-        {
-            preserveScroll: true,
-            preserveState: true,
-        },
+// STATE FILTRES
+const periodMap = computed(() =>
+    Object.fromEntries(props.periods.map((p) => [p.id, p.name])),
+);
+
+const filtersState = ref({
+    period: props.filters.period
+        ? Array.isArray(props.filters.period)
+            ? props.filters.period
+            : [props.filters.period]
+        : [],
+    technique: props.filters.technique
+        ? Array.isArray(props.filters.technique)
+            ? props.filters.technique
+            : [props.filters.technique]
+        : [],
+    available: props.filters.available ?? null,
+});
+
+// UPDATE
+const updateFilters = () => {
+    const cleanFilters = Object.fromEntries(
+        Object.entries(filtersState.value).filter(
+            ([_, v]) => v !== null && v.length !== 0,
+        ),
     );
-};
-const filterByPeriod = (periodId) => {
-    updateFilters({ period: periodId });
+
+    router.get('/oeuvres', cleanFilters, {
+        preserveScroll: true,
+        preserveState: true,
+        replace: true,
+    });
 };
 
-// MODAL / CAROUSEL
+// MODAL
 const showModal = ref(false);
 const currentPaintingIndex = ref(0);
+
+// APRÈS
+const handleKeydown = (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') nextPainting();
+    if (e.key === 'ArrowLeft') prevPainting();
+};
 
 const openModal = (index) => {
     currentPaintingIndex.value = index;
     showModal.value = true;
+    window.addEventListener('keydown', handleKeydown);
+};
+
+const closeModal = () => {
+    showModal.value = false;
+    window.removeEventListener('keydown', handleKeydown);
 };
 
 const nextPainting = () => {
@@ -55,95 +84,182 @@ const prevPainting = () => {
             Œuvres
         </h1>
 
-        <!-- Filtre -->
-        <section class="flex gap-4 pb-4">
-            <!-- Périodes -->
-            <Menu as="div">
+        <!-- FILTRES -->
+        <section class="flex flex-wrap gap-4 pb-6">
+            <!-- PÉRIODES -->
+            <Menu as="div" class="relative">
                 <MenuButton
-                    class="cursor-pointer rounded-3xl border px-4 py-2 hover:underline"
+                    class="cursor-pointer rounded-3xl border px-4 py-2 hover:bg-gray-100 hover:underline"
                 >
                     Périodes
                 </MenuButton>
 
                 <MenuItems
-                    class="absolute z-10 mt-2 border bg-white p-2 shadow"
+                    class="absolute z-10 mt-2 w-64 border bg-white p-3 shadow"
                 >
                     <!-- Toutes -->
-                    <MenuItem v-slot="{ active }">
-                        <button
-                            @click="filterByPeriod(null)"
-                            :class="[
-                                'block w-full px-4 py-2 text-left text-sm',
-                                active ? 'bg-gray-100' : '',
-                            ]"
-                        >
-                            Toutes
-                        </button>
-                    </MenuItem>
+                    <label class="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            :checked="filtersState.period.length === 0"
+                            @change="
+                                filtersState.period = [];
+                                updateFilters();
+                            "
+                            class="accent-black"
+                        />
+                        Toutes
+                    </label>
 
-                    <!-- Liste des périodes -->
-                    <MenuItem
+                    <!-- Liste -->
+                    <label
                         v-for="period in periods"
                         :key="period.id"
-                        v-slot="{ active }"
+                        class="flex items-center gap-2"
                     >
-                        <button
-                            @click="filterByPeriod(period.id)"
-                            :class="[
-                                'block w-full px-4 py-2 text-left text-sm',
-                                active ? 'bg-gray-100' : '',
-                            ]"
-                        >
-                            {{ period.name }}
-                        </button>
-                    </MenuItem>
+                        <input
+                            type="checkbox"
+                            :value="period.id"
+                            v-model="filtersState.period"
+                            @change="updateFilters"
+                            class="accent-black"
+                        />
+                        {{ period.name }}
+                    </label>
                 </MenuItems>
             </Menu>
-            <Menu as="div">
+
+            <!-- TECHNIQUES -->
+            <Menu as="div" class="relative">
                 <MenuButton
-                    class="cursor-pointer rounded-3xl border px-4 py-2 hover:underline"
+                    class="cursor-pointer rounded-3xl border px-4 py-2 hover:bg-gray-100 hover:underline"
                 >
                     Techniques
                 </MenuButton>
 
                 <MenuItems
-                    class="absolute z-10 mt-2 w-56 border bg-white shadow"
+                    class="absolute z-10 mt-2 w-64 border bg-white p-3 shadow"
                 >
-                    <!-- Toutes -->
-                    <MenuItem v-slot="{ active }">
-                        <button
-                            @click="updateFilters({ technique: null })"
-                            :class="[
-                                'block w-full px-4 py-2 text-left',
-                                active && 'bg-gray-100',
-                            ]"
-                        >
-                            Toutes
-                        </button>
-                    </MenuItem>
+                    <label class="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            :checked="filtersState.technique.length === 0"
+                            @change="
+                                filtersState.technique = [];
+                                updateFilters();
+                            "
+                            class="accent-black"
+                        />
+                        Toutes
+                    </label>
 
-                    <!-- Liste dynamique -->
-                    <MenuItem
+                    <label
                         v-for="tech in techniques"
                         :key="tech"
-                        v-slot="{ active }"
+                        class="flex items-center gap-2"
                     >
-                        <button
-                            @click="updateFilters({ technique: tech })"
-                            :class="[
-                                'block w-full px-4 py-2 text-left',
-                                active && 'bg-gray-100',
-                            ]"
-                        >
-                            {{ tech }}
-                        </button>
-                    </MenuItem>
+                        <input
+                            type="checkbox"
+                            :value="tech"
+                            v-model="filtersState.technique"
+                            @change="updateFilters"
+                            class="accent-black"
+                        />
+                        {{ tech }}
+                    </label>
+                </MenuItems>
+            </Menu>
+
+            <!-- DISPONIBILITÉ -->
+            <Menu as="div" class="relative">
+                <MenuButton
+                    class="cursor-pointer rounded-3xl border px-4 py-2 hover:bg-gray-100 hover:underline"
+                >
+                    Disponibilité
+                </MenuButton>
+
+                <MenuItems
+                    class="absolute z-10 mt-2 w-56 border bg-white p-3 shadow"
+                >
+                    <label class="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            name="available"
+                            :checked="filtersState.available === null"
+                            @change="
+                                filtersState.available = null;
+                                updateFilters();
+                            "
+                            class="accent-black"
+                        />
+                        Toutes
+                    </label>
+
+                    <label class="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="1"
+                            v-model="filtersState.available"
+                            @change="updateFilters"
+                            class="accent-black"
+                        />
+                        Disponible
+                    </label>
+
+                    <label class="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="0"
+                            v-model="filtersState.available"
+                            @change="updateFilters"
+                            class="accent-black"
+                        />
+                        Indisponible
+                    </label>
                 </MenuItems>
             </Menu>
         </section>
-        <p v-if="paintings.data.length === 0" class="text-sm text-gray-500">
-            Aucune oeuvre pour l'instant.
-        </p>
+
+        <!-- FILTRES ACTIFS -->
+        <div class="mb-4 flex flex-wrap gap-2">
+            <span
+                v-for="tech in filtersState.technique"
+                :key="tech"
+                class="rounded bg-gray-200 px-2 py-1 text-xs"
+            >
+                {{ tech }}
+                <button
+                    @click="
+                        filtersState.technique = filtersState.technique.filter(
+                            (t) => t !== tech,
+                        );
+                        updateFilters();
+                    "
+                    class="ml-1 text-xs"
+                >
+                    ✕
+                </button>
+            </span>
+
+            <span
+                v-for="p in filtersState.period"
+                :key="p"
+                class="rounded bg-gray-200 px-2 py-1 text-xs"
+            >
+                {{ periodMap[p] }}
+                <button
+                    @click="
+                        filtersState.period = filtersState.period.filter(
+                            (id) => id !== p,
+                        );
+                        updateFilters();
+                    "
+                    class="ml-1 text-xs"
+                >
+                    ✕
+                </button>
+            </span>
+        </div>
 
         <!-- GRID -->
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -161,7 +277,6 @@ const prevPainting = () => {
                 />
                 <div class="mt-2 flex items-center justify-center gap-2">
                     <h3 class="text-lg font-light">{{ painting.title }}</h3>
-
                     <p v-if="painting.technique" class="text-sm text-gray-500">
                         {{ painting.technique }}
                     </p>
@@ -203,7 +318,7 @@ const prevPainting = () => {
         <div
             v-if="showModal"
             class="wrapper fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-sm"
-            @click.self="showModal = false"
+            @click.self="closeModal"
         >
             <button
                 @click="prevPainting"
@@ -220,7 +335,7 @@ const prevPainting = () => {
                     :src="`/storage/${paintings.data[currentPaintingIndex].image_path}`"
                     :alt="paintings.data[currentPaintingIndex].title"
                     class="max-h-[98vh] w-full object-contain"
-                    @click.self.stop="showModal = false"
+                    @click.self.stop="closeModal"
                 />
                 <!-- INFOS -->
                 <div class="absolute inset-0 w-35 gap-2 p-2 text-gray-700">
@@ -248,7 +363,6 @@ const prevPainting = () => {
                         {{ paintings.data[currentPaintingIndex].height }} ×
                         {{ paintings.data[currentPaintingIndex].width }} cm
                     </p>
-
                     <p v-if="paintings.data[currentPaintingIndex].description">
                         {{ paintings.data[currentPaintingIndex].description }}
                     </p>

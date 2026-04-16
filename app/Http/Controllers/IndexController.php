@@ -14,7 +14,7 @@ class IndexController extends Controller
     {
         return Inertia::render('Index', [
             'title' => 'Accueil',
-            'latestPaintings' => Painting::latest()->take(4)->get(),
+            'latestPaintings' => Painting::latest()->take(5)->get(),
         ]);
     }
 
@@ -35,21 +35,30 @@ class IndexController extends Controller
 
   public function oeuvres(Request $request)
     {
+
+        $request->validate([
+            'period.*'   => 'nullable|exists:periods,id',
+            'technique'  => 'nullable|array',
+            'available'  => 'nullable|boolean',
+            'width_min'  => 'nullable|integer|min:0',
+            'width_max'  => 'nullable|integer|min:0',
+            'height_min' => 'nullable|integer|min:0',
+            'height_max' => 'nullable|integer|min:0',
+        ]);
+
         $query = Painting::with('period');
 
-        // PÉRIODE
-        $query->when($request->period, function ($q) use ($request) {
-            $q->where('period_id', $request->period);
-        });
+        // FILTRES
+        $periods = (array) $request->input('period', []);
+        $techniques = (array) $request->input('technique', []);
 
-        // TECHNIQUE
-        $query->when($request->technique, function ($q) use ($request) {
-            $q->where('technique', "LIKE", $request->technique);
-        });
+        $query->when(!empty($periods), fn($q) => $q->whereIn('period_id', $periods));
+        $query->when(!empty($techniques), fn($q) => $q->whereIn('technique', $techniques));
+        
 
         // DISPONIBILITÉ
-        $query->when($request->available !== null, function ($q) use ($request) {
-            $q->where('is_available', $request->available);
+        $query->when($request->has('available') && $request->available !== '', function ($q) use ($request) {
+        $q->where('is_available', filter_var($request->available, FILTER_VALIDATE_BOOLEAN));
         });
 
         // DIMENSIONS (ex: width_min, width_max, etc.)
