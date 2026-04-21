@@ -55,7 +55,7 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
             'external_link' => 'nullable|url',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         // upload image
@@ -103,7 +103,7 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
             'external_link' => 'nullable|url',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         // gestion image

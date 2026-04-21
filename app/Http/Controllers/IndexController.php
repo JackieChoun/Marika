@@ -104,6 +104,14 @@ class IndexController extends Controller
         ]);
     }
 
+    public function event(Event $event)
+    {
+        return Inertia::render('Event', [
+            'event' => $event,
+            'title' => $event->title,
+        ]);
+    }
+
     public function contact()
     {
         return Inertia::render('Contact', [

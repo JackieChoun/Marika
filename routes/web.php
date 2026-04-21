@@ -16,6 +16,7 @@ Route::get('/periodes', [IndexController::class, 'periodes'])->name('periodes');
 Route::get('/oeuvres', [IndexController::class, 'oeuvres'])->name('oeuvres');
 Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 Route::get('/actu', [IndexController::class, 'actu'])->name('actu');
+Route::get('/events/{event}', [IndexController::class, 'event'])->name('event');
 
 // Admin
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -1,6 +1,7 @@
 <script setup>
 import SiteLayout from '@/layouts/SiteLayout.vue';
 import { computed } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     events: Array,
@@ -31,26 +32,27 @@ const formatDate = (date) => {
             Actualités et Masterclass
         </h1>
 
-        <section class="wrapper space-y-16 py-10">
+        <section class="space-y-16">
             <!-- EXPOSITIONS -->
-            <div v-if="expositions.length">
+            <div v-if="expositions.length > 0">
                 <h2 class="mb-6 text-2xl font-semibold">Expositions</h2>
 
                 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <div
+                    <Link
                         v-for="event in expositions"
                         :key="event.id"
-                        class="flex flex-col gap-3"
+                        class="flex h-3/4 w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
+                        :href="`/events/${event.id}`"
                     >
                         <img
                             v-if="event.image_path"
                             :src="`/storage/${event.image_path}`"
                             :alt="event.title"
-                            class="h-60 w-full object-cover object-center"
+                            class="h-1/2 w-full rounded-t-sm object-cover object-center"
                         />
 
-                        <div class="flex flex-col gap-1">
-                            <h3 class="text-lg font-semibold">
+                        <div class="flex flex-col gap-2 p-4">
+                            <h3 class="text-lg font-medium">
                                 {{ event.title }}
                             </h3>
 
@@ -81,7 +83,7 @@ const formatDate = (date) => {
                                 En savoir plus
                             </a>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
 
@@ -90,19 +92,20 @@ const formatDate = (date) => {
                 <h2 class="mb-6 text-2xl font-semibold">Masterclass</h2>
 
                 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <div
+                    <Link
                         v-for="event in stages"
                         :key="event.id"
-                        class="flex flex-col gap-3"
+                        class="flex h-3/4 w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
+                        :href="`/events/${event.id}`"
                     >
                         <img
                             v-if="event.image_path"
                             :src="`/storage/${event.image_path}`"
                             :alt="event.title"
-                            class="h-60 w-full object-cover object-center"
+                            class="h-1/2 w-full rounded-t-sm object-cover object-center"
                         />
 
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-2 p-4">
                             <h3 class="text-lg font-semibold">
                                 {{ event.title }}
                             </h3>
@@ -131,7 +134,7 @@ const formatDate = (date) => {
                                 Voir le stage
                             </a>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </section>
