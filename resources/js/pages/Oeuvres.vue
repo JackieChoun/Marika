@@ -203,7 +203,7 @@ const prevPainting = () => {
                             @change="updateFilters"
                             class="accent-black"
                         />
-                        Disponible
+                        En vente
                     </label>
 
                     <label class="flex items-center gap-2">

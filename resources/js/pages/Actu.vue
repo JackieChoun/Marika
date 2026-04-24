@@ -14,7 +14,7 @@ const expositions = computed(() =>
 
 const stages = computed(() => props.events.filter((e) => e.type === 'stage'));
 
-// helper date
+// date
 const formatDate = (date) => {
     return new Intl.DateTimeFormat('fr-FR', {
         year: 'numeric',
@@ -32,7 +32,7 @@ const formatDate = (date) => {
             Actualités et Masterclass
         </h1>
 
-        <section class="space-y-16">
+        <section class="space-y-16 pb-16">
             <!-- EXPOSITIONS -->
             <div v-if="expositions.length > 0">
                 <h2 class="mb-6 text-2xl font-semibold">Expositions</h2>
@@ -41,17 +41,17 @@ const formatDate = (date) => {
                     <Link
                         v-for="event in expositions"
                         :key="event.id"
-                        class="flex h-3/4 w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
+                        class="flex w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
                         :href="`/events/${event.id}`"
                     >
                         <img
                             v-if="event.image_path"
                             :src="`/storage/${event.image_path}`"
                             :alt="event.title"
-                            class="h-1/2 w-full rounded-t-sm object-cover object-center"
+                            class="h-56 w-full rounded-t-sm object-cover object-center"
                         />
 
-                        <div class="flex flex-col gap-2 p-4">
+                        <div class="flex flex-col gap-2 px-4 pt-4 pb-6">
                             <h3 class="text-lg font-medium">
                                 {{ event.title }}
                             </h3>
@@ -69,18 +69,18 @@ const formatDate = (date) => {
 
                             <p
                                 v-if="event.description"
-                                class="text-sm text-gray-700"
+                                class="line-clamp-3 text-sm text-gray-700"
                             >
                                 {{ event.description }}
                             </p>
-
                             <a
                                 v-if="event.external_link"
                                 :href="event.external_link"
                                 target="_blank"
+                                @click.stop
                                 class="text-sm text-red-900 hover:underline"
                             >
-                                En savoir plus
+                                Voir le stage
                             </a>
                         </div>
                     </Link>
@@ -95,17 +95,17 @@ const formatDate = (date) => {
                     <Link
                         v-for="event in stages"
                         :key="event.id"
-                        class="flex h-3/4 w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
+                        class="flex w-full cursor-pointer flex-col rounded-sm shadow-2xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl/50"
                         :href="`/events/${event.id}`"
                     >
                         <img
                             v-if="event.image_path"
                             :src="`/storage/${event.image_path}`"
                             :alt="event.title"
-                            class="h-1/2 w-full rounded-t-sm object-cover object-center"
+                            class="h-56 w-full rounded-t-sm object-cover object-center"
                         />
 
-                        <div class="flex flex-col gap-2 p-4">
+                        <div class="flex flex-col gap-2 px-4 pt-4 pb-6">
                             <h3 class="text-lg font-semibold">
                                 {{ event.title }}
                             </h3>
@@ -120,7 +120,7 @@ const formatDate = (date) => {
 
                             <p
                                 v-if="event.description"
-                                class="text-sm text-gray-700"
+                                class="line-clamp-3 text-sm text-gray-700"
                             >
                                 {{ event.description }}
                             </p>
@@ -129,6 +129,7 @@ const formatDate = (date) => {
                                 v-if="event.external_link"
                                 :href="event.external_link"
                                 target="_blank"
+                                @click.stop
                                 class="text-sm text-red-900 hover:underline"
                             >
                                 Voir le stage
