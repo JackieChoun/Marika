@@ -266,6 +266,10 @@ const prevPainting = () => {
             <div
                 v-for="(painting, index) in paintings.data"
                 :key="painting.id"
+                v-motion
+                :initial="{ opacity: 0, x: index % 3 === 0 ? -60 : 60 }"
+                :visible-once="{ opacity: 1, x: 0 }"
+                :transition="{ delay: index * 120, duration: 1200 }"
                 class="cursor-pointer"
                 @click="openModal(index)"
             >
