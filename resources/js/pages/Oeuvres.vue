@@ -80,12 +80,16 @@ const prevPainting = () => {
 
 <template>
     <SiteLayout>
-        <h1 class="pt-4 pb-6 text-center text-5xl font-extralight lg:text-7xl">
+        <h1
+            class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
+        >
             Œuvres
         </h1>
 
         <!-- FILTRES -->
-        <section class="flex flex-wrap gap-4 pb-6">
+        <section
+            class="flex flex-wrap justify-center gap-4 pb-6 lg:justify-start"
+        >
             <!-- PÉRIODES -->
             <Menu as="div" class="relative">
                 <MenuButton
@@ -269,7 +273,7 @@ const prevPainting = () => {
                 v-motion
                 :initial="{ opacity: 0, x: index % 3 === 0 ? -60 : 60 }"
                 :visible-once="{ opacity: 1, x: 0 }"
-                :transition="{ delay: index * 120, duration: 1200 }"
+                :transition="{ delay: index * 120, duration: 1500 }"
                 class="cursor-pointer"
                 @click="openModal(index)"
             >

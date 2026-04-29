@@ -17,12 +17,20 @@ defineProps({
         <Swiper
             direction="horizontal"
             :loop="true"
+            :slides-per-view="1"
+            :space-between="0"
             :autoplay="{ delay: 5000, disableOnInteraction: false }"
             :pagination="{ clickable: true }"
             :modules="modules"
-            class="h-full w-full"
+            :centered-slides="true"
+            :round-lengths="true"
+            class="h-full w-full overflow-hidden"
         >
-            <SwiperSlide v-for="painting in paintings" :key="painting.id">
+            <SwiperSlide
+                v-for="painting in paintings"
+                :key="painting.id"
+                class="w-full shrink-0"
+            >
                 <Link :href="`/oeuvres`">
                     <img
                         :src="`/storage/${painting.image_path}`"
@@ -50,8 +58,20 @@ defineProps({
 
 <style>
 @media (max-width: 768px) {
+    .swiper {
+        overflow: hidden;
+    }
+
+    .swiper-wrapper {
+        width: 100%;
+        display: flex;
+    }
+
+    .swiper-slide {
+        min-width: 100%;
+        flex-shrink: 0;
+    }
     .swiper-slide img {
-        display: block;
         width: 100%;
         height: auto;
         object-fit: contain;

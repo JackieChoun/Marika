@@ -11,13 +11,12 @@ defineProps({
 <template>
     <SiteLayout>
         <h1
-            class="pt-4 pb-20 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
+            class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
         >
             Marika Perros
         </h1>
         <section
-            class="flex flex-col overflow-hidden"
-            style="height: calc(96dvh - 10rem)"
+            class="flex h-[calc(80dvh-6rem)] flex-col overflow-hidden md:h-[calc(100dvh-8rem)] lg:h-[calc(96dvh-10rem)]"
         >
             <CarouselSection
                 class="hidden md:block"
@@ -30,12 +29,12 @@ defineProps({
         </section>
         <section class="gap-5 py-6 lg:py-10">
             <h2
-                class="pb-2 text-center text-2xl font-light lg:pb-5 lg:text-left lg:text-4xl"
+                class="pb-3 text-center text-2xl font-light lg:pb-5 lg:text-left lg:text-4xl"
             >
                 Faire peindre la matière
             </h2>
             <p
-                class="px-5 text-center leading-relaxed md:text-justify lg:text-lg"
+                class="text-center text-sm leading-relaxed md:text-justify lg:text-lg"
             >
                 Peindre, c’est jouer ! Jouer avec la matière, être l’alchimiste
                 d’un monde qui se crée.<br />

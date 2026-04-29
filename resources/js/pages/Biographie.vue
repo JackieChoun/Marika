@@ -5,7 +5,7 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
 <template>
     <SiteLayout>
         <h1
-            class="pt-4 pb-6 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
+            class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
         >
             Biographie
         </h1>
@@ -26,7 +26,7 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                             <p class="mb-2 text-sm font-semibold text-gray-500">
                                 Artiste-peintre
                             </p>
-                            <p class="text-justify text-sm leading-relaxed">
+                            <p class="text-sm leading-relaxed md:text-justify">
                                 Depuis plus de 10 ans, mon thème de
                                 prédilection, NATURE, un seul mot, celui qui
                                 manque tant à l’homme ! Quoi de plus naturel

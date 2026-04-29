@@ -12,7 +12,7 @@ const getYear = (date) => (date ? new Date(date).getFullYear() : null);
 <template>
     <SiteLayout>
         <h1
-            class="pt-4 pb-6 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
+            class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
         >
             Périodes
         </h1>
