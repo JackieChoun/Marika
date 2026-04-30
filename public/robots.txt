@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /login
+Disallow: /dashboard
+
+Allow: /
+
+Sitemap: https://marikaperros.com/sitemap.xml

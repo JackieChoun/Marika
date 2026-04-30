@@ -11,25 +11,34 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
    public function index()
-    {
-        return Inertia::render('Index', [
+{
+    return Inertia::render('Index', [
+        'seo' => [
             'title' => 'Accueil',
-            'latestPaintings' => Painting::latest()->take(5)->get(),
-        ]);
-    }
+            'description' => 'Découvrez les œuvres de Marika Perros, artiste peintre à Toulouse.',
+        ],
+        'latestPaintings' => Painting::latest()->take(5)->get(),
+    ]);
+}
 
     public function biographie()
     {
         return Inertia::render('Biographie', [
-            'title' => 'Biographie',
+            'seo' => [
+                'title' => 'Biographie',
+                'description' => 'Découvrez la biographie de Marika Perros, artiste peintre à Toulouse.',
+            ],
         ]);
     }
 
     public function periodes()
     {
         return Inertia::render('Periodes', [
+            'seo' => [
+                'title' => 'Périodes',
+                'description' => 'Explorez les différentes périodes artistiques des œuvres de Marika Perros.',
+            ],
             'periods' => Period::orderBy('start_date', 'desc')->get(),
-            'title' => 'Périodes',
         ]);
     }
 
@@ -92,7 +101,10 @@ class IndexController extends Controller
                 'height_min',
                 'height_max',
             ]),
-            'title' => 'Oeuvres',
+            'seo' => [
+                'title' => 'Oeuvres',
+                'description' => 'Découvrez les œuvres de Marika Perros, artiste peintre à Toulouse. Explorez sa galerie d\'art.',
+            ],
         ]);
     }
 
@@ -100,7 +112,10 @@ class IndexController extends Controller
     {
         return Inertia::render('Actu', [
             'events' => Event::orderBy('date_start', 'desc')->get(),
-            'title' => 'Actu',
+            'seo' => [
+                'title' => 'Actualités',
+                'description' => 'Découvrez les dernières actualités de Marika Perros, artiste peintre à Toulouse.',
+            ],
         ]);
     }
 
@@ -108,14 +123,20 @@ class IndexController extends Controller
     {
         return Inertia::render('Event', [
             'event' => $event,
-            'title' => $event->title,
+            'seo' => [
+                'title' => $event->title,
+                'description' => Str::limit(strip_tags($event->description), 160),
+            ],
         ]);
     }
 
     public function contact()
     {
         return Inertia::render('Contact', [
-            'title' => 'Contact',
+            'seo' => [
+                'title' => 'Contact',
+                'description' => 'Contactez Marika Perros, artiste peintre à Toulouse.',
+            ],
         ]);
     }
 }

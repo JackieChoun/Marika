@@ -8,14 +8,22 @@
                 &copy; {{ new Date().getFullYear() }} Marika Perros
             </p>
             <div class="hidden gap-8 lg:flex">
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                    href="https://www.instagram.com/marika_perros/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <img
                         src="/images/Instagram.svg"
                         alt="Instagram"
                         class="h-6 w-6"
                     />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                    href="https://www.facebook.com/marikaperrosartiste/?locale=fr_FR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <img
                         src="/images/Facebook.svg"
                         alt="Facebook"
@@ -53,14 +61,22 @@
         </div>
 
         <div class="flex gap-10 lg:hidden">
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://www.instagram.com/marika_perros/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <img
                     src="/images/Instagram.svg"
                     alt="Instagram"
                     class="h-6 w-6"
                 />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://www.facebook.com/marikaperrosartiste/?locale=fr_FR"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <img
                     src="/images/Facebook.svg"
                     alt="Facebook"
