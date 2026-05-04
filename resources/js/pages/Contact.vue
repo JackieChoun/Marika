@@ -14,13 +14,13 @@ import SiteLayout from '@/layouts/SiteLayout.vue';
                 class="flex items-center pb-6 text-center md:text-justify lg:pb-0 lg:text-lg"
             >
                 Atelier attribué par la DRAC en 1998, de 70 m2, baie vitrée de
-                4/5 m. J’expose aussi régulièrement d’autres artistes dans mon
-                atelier conjointement à un spectacle vivant. Ce sont des soirées
-                privées, maximum 50 personnes. J’appelle mon atelier pour
-                l’occasion L’Atelier A. Rencontres entre les arts et les gens.
-                Mon but : créer du lien. Les spectateurs sont de tous âges et de
-                toutes conditions sociales. PS : je n’invite que les personnes
-                par email, si vous désirez être invité, écrivez moi.
+                4/5 m.<br />
+                J'invite des musiciens à l'occasion de soirées privées, maximum
+                40 personnes. J’appelle mon atelier pour l’occasion L’Atelier A.
+                Rencontres entre les arts et les gens. Mon but : créer du
+                lien.<br />
+                PS : je n’invite que les personnes par email, si vous désirez
+                être invité, écrivez moi.
             </p>
             <img
                 src="/images/atelier.jpg"

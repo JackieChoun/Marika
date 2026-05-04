@@ -125,7 +125,6 @@ class IndexController extends Controller
             'event' => $event,
             'seo' => [
                 'title' => $event->title,
-                'description' => Str::limit(strip_tags($event->description), 160),
             ],
         ]);
     }

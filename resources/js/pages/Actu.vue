@@ -29,7 +29,7 @@ const formatDate = (date) => {
         <h1
             class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
         >
-            Actualités et Masterclass
+            Actualités
         </h1>
 
         <section class="space-y-16 pb-16">

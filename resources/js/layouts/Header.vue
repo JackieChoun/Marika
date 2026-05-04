@@ -62,7 +62,7 @@ const toggleMenu = () => {
                                 'underline underline-offset-2':
                                     currentPath.startsWith('/actu'),
                             }"
-                            >Actu & Masterclass</Link
+                            >Actualités</Link
                         >
                     </li>
                 </ul>
@@ -146,7 +146,7 @@ const toggleMenu = () => {
                             currentPath.startsWith('/actu'),
                     }"
                     class="block py-8"
-                    >Actu & Masterclass</Link
+                    >Actualités</Link
                 >
             </li>
             <li class="mt-6 flex justify-center">
