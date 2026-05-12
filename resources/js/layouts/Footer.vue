@@ -49,7 +49,6 @@
         <div class="flex flex-col gap-1">
             <a
                 href="/mentions-legales"
-                target="_blank"
                 class="hover:underline"
                 rel="noopener noreferrer"
             >

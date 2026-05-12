@@ -11,7 +11,7 @@ defineProps({
 <template>
     <SiteLayout>
         <h1
-            class="pt-4 pb-8 text-center text-5xl font-extralight lg:py-5 lg:text-7xl"
+            class="py-4 text-center text-4xl font-extralight lg:py-5 lg:text-7xl"
         >
             Marika Perros
         </h1>

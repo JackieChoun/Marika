@@ -143,7 +143,7 @@ const submit = () => {
                             id="width"
                             v-model="form.width"
                             type="number"
-                            step="0.01"
+                            step="1"
                             class="rounded-lg border border-gray-300 px-4 py-2 text-sm"
                             placeholder="Ex: 80"
                         />

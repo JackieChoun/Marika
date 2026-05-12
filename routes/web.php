@@ -47,6 +47,10 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
+// routes/web.php
+Route::get('/register', fn() => abort(404));
+Route::post('/register', fn() => abort(404));
+
 // Public
 Route::get('/', [IndexController::class, 'index'])->name('accueil');
 Route::get('/biographie', [IndexController::class, 'biographie'])->name('biographie');
@@ -55,6 +59,9 @@ Route::get('/oeuvres', [IndexController::class, 'oeuvres'])->name('oeuvres');
 Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 Route::get('/actu', [IndexController::class, 'actu'])->name('actu');
 Route::get('/events/{event}', [IndexController::class, 'event'])->name('event');
+Route::get('/mentions-legales', function () {
+    return Inertia::render('MentionsLegales');
+});
 
 // Admin
 Route::middleware(['auth', 'verified'])->group(function () {
